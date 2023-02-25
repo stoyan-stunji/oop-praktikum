@@ -1,0 +1,56 @@
+#include <iostream>
+
+using namespace std;
+
+void printArray(int array[], int size)
+{
+    for (int i = 0; i < size; i++)
+    {
+        cout << array[i] << " ";
+    }
+}
+
+void pushBack(int* array, int size, int element)
+{
+    int* newArray = new int[size + sizeof(char)];
+
+    int counter = 0;
+    for (int i = 0; i < size; i++)
+    {
+        newArray[counter++] = array[i];
+    }
+    newArray[counter] = element;
+
+    printArray(newArray, size + sizeof(char));
+
+    delete[] newArray;
+}
+
+void pushFront(int* array, int size, int element)
+{
+    int* newArray = new int[size + sizeof(char)];
+
+    int counter = 0;
+    for (int i = -1; i < size; i++)
+    {
+        newArray[counter++] = array[i];
+    }
+    newArray[0] = element;
+
+    printArray(newArray, size + sizeof(char));
+
+    delete[] newArray;
+}
+
+int main()
+{
+    int array[] = { 1,2,3,4,5 };
+    int size = sizeof(array) / sizeof(array[0]);
+    int element = 6;
+
+    pushBack(array, size, element);
+    cout << endl;
+    pushFront(array, size, element);
+
+}
+
